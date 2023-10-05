@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	abstractfactory "patterns/creational/abstract-factory"
+	"patterns/creational/abstract-factory/sports"
 	"patterns/creational/factory"
 	"runtime"
 )
@@ -11,6 +13,8 @@ func main() {
 	// fabric()
 
 	// abstract_fabric()
+
+	abstract_fabric_sports()
 }
 
 // creational patterns
@@ -45,4 +49,50 @@ func abstract_fabric() {
 	menu := factory.CreateMenu()
 	menu.Show()
 	menu.Hide()
+}
+
+func abstract_fabric_sports() {
+	// nike factory
+	nikeFactory, err := sports.GetSports("nike")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	nikeShirt := nikeFactory.CreateShirt()
+	fmt.Println(nikeShirt.GetColor())
+
+	nikeShirt.SetColor("blue")
+	fmt.Println(nikeShirt.GetColor())
+
+	nikeShoe := nikeFactory.CreateShoe()
+	fmt.Println(nikeShoe.GetLogo())
+
+	nikeShoe.SetLogo("nike black")
+	fmt.Println(nikeShoe.GetLogo())
+
+	// adidas factory
+	adidasFactory, err := sports.GetSports("adidas")
+	if err != nil {
+		fmt.Println(err)
+	}
+	adidasShirt := adidasFactory.CreateShirt()
+	fmt.Println(adidasShirt.GetColor())
+
+	adidasShirt.SetColor("white")
+	fmt.Println(adidasShirt.GetColor())
+
+	adidasShoe := adidasFactory.CreateShoe()
+	fmt.Println(adidasShoe.GetLogo())
+
+	adidasShoe.SetLogo("adidas retro")
+	fmt.Println(adidasShoe.GetLogo())
+
+	// acics
+	acicsFactory, err := sports.GetSports("acics")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	acicsShoe := acicsFactory.CreateShoe()
+	fmt.Println(acicsShoe.GetLogo())
 }

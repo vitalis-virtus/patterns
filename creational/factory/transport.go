@@ -2,6 +2,10 @@ package factory
 
 import "fmt"
 
+type ITransport interface {
+	Ride()
+}
+
 type Transport struct {
 	name   string
 	wheels int
