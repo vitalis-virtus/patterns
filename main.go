@@ -2,11 +2,15 @@ package main
 
 import (
 	"log"
+	abstractfactory "patterns/creational/abstract-factory"
 	"patterns/creational/factory"
+	"runtime"
 )
 
 func main() {
-	fabric()
+	// fabric()
+
+	// abstract_fabric()
 }
 
 // creational patterns
@@ -29,4 +33,16 @@ func fabric() {
 		log.Fatal(err)
 	}
 	scooter.Ride()
+}
+
+func abstract_fabric() {
+	factory := abstractfactory.GetGUI(runtime.GOOS)
+
+	button := factory.CreateButton()
+	button.PrintColor()
+	button.PrintSize()
+
+	menu := factory.CreateMenu()
+	menu.Show()
+	menu.Hide()
 }
