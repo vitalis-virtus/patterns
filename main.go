@@ -5,6 +5,7 @@ import (
 	"log"
 	abstractfactory "patterns/creational/abstract-factory"
 	"patterns/creational/abstract-factory/sports"
+	"patterns/creational/builder"
 	"patterns/creational/factory"
 	"runtime"
 )
@@ -14,7 +15,9 @@ func main() {
 
 	// abstract_fabric()
 
-	abstract_fabric_sports()
+	// abstract_fabric_sports()
+
+	builder_pattern()
 }
 
 // creational patterns
@@ -95,4 +98,12 @@ func abstract_fabric_sports() {
 
 	acicsShoe := acicsFactory.CreateShoe()
 	fmt.Println(acicsShoe.GetLogo())
+}
+
+func builder_pattern() {
+	carBuilder := builder.NewCarBuilder()
+
+	car := carBuilder.SetColor("green").SetEngineType("V8").SetNavigation(false).SetSunroof(true)
+
+	fmt.Println(car.Build())
 }
