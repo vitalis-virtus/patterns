@@ -24,7 +24,7 @@ func NewCarBuilder() CarBuilder {
 	}
 }
 
-// carBuilder implements the CarBuilder interface.
+// carBuilder implements the CarBuilder interface. It's a concrete builder
 type carBuilder struct {
 	car *Car
 }

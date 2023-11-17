@@ -7,6 +7,7 @@ import (
 	"patterns/creational/abstract-factory/sports"
 	"patterns/creational/builder"
 	"patterns/creational/factory"
+	"patterns/creational/prototype"
 	"runtime"
 )
 
@@ -17,7 +18,9 @@ func main() {
 
 	// abstract_fabric_sports()
 
-	builder_pattern()
+	// builder_pattern()
+
+	prototype_pattern()
 }
 
 // creational patterns
@@ -106,4 +109,25 @@ func builder_pattern() {
 	car := carBuilder.SetColor("green").SetEngineType("V8").SetNavigation(false).SetSunroof(true)
 
 	fmt.Println(car.Build())
+}
+
+func prototype_pattern() {
+	file1 := prototype.File{Name: "File1"}
+	file2 := prototype.File{Name: "File2"}
+	file3 := prototype.File{Name: "File3"}
+
+	folder1 := prototype.Folder{
+		Name:     "Folder1",
+		Children: []prototype.Node{&file1},
+	}
+
+	folder2 := prototype.Folder{
+		Name:     "Folder2",
+		Children: []prototype.Node{&folder1, &file2, &file3},
+	}
+
+	folder2.Print()
+
+	cloneFolder := folder2.Clone()
+	cloneFolder.Print()
 }
