@@ -8,6 +8,7 @@ import (
 	"patterns/creational/builder"
 	"patterns/creational/factory"
 	"patterns/creational/prototype"
+	"patterns/creational/singletone"
 	"runtime"
 )
 
@@ -20,7 +21,9 @@ func main() {
 
 	// builder_pattern()
 
-	prototype_pattern()
+	// prototype_pattern()
+
+	singletone_pattern()
 }
 
 // creational patterns
@@ -130,4 +133,10 @@ func prototype_pattern() {
 
 	cloneFolder := folder2.Clone()
 	cloneFolder.Print()
+}
+
+func singletone_pattern() {
+	for i := 0; i < 10; i++ {
+		singletone.GetInstance()
+	}
 }
