@@ -4,7 +4,7 @@ type Bicycle struct {
 	Transport
 }
 
-func NewBicycle() ITransport {
+func NewBicycle() Transporter {
 	return &Bicycle{
 		Transport{
 			name:   "bicycle",

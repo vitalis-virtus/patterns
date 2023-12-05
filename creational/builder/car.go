@@ -17,7 +17,7 @@ type Builder interface {
 	Build() *Car
 }
 
-// NewCarBuilder creates a new CarBuilder.
+// NewCarBuilder creates a new carBuilder.
 func NewCarBuilder() Builder {
 	return &carBuilder{
 		car: &Car{}, // Initialize the car attribute

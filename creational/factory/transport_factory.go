@@ -2,7 +2,7 @@ package factory
 
 import "errors"
 
-func GetTransport(transportType string) (ITransport, error) {
+func GetTransport(transportType string) (Transporter, error) {
 	switch transportType {
 	case "car":
 		return NewCar(), nil

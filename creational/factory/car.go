@@ -4,7 +4,7 @@ type Car struct {
 	Transport
 }
 
-func NewCar() ITransport {
+func NewCar() Transporter {
 	return &Car{
 		Transport{
 			name:   "car",

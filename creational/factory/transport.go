@@ -2,7 +2,7 @@ package factory
 
 import "fmt"
 
-type ITransport interface {
+type Transporter interface {
 	Ride()
 }
 
