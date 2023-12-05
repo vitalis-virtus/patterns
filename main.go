@@ -9,6 +9,7 @@ import (
 	"patterns/creational/factory"
 	"patterns/creational/prototype"
 	"patterns/creational/singletone"
+	"patterns/structural/adapter"
 	"runtime"
 )
 
@@ -19,11 +20,13 @@ func main() {
 
 	// abstract_fabric_sports()
 
-	builder_pattern()
+	// builder_pattern()
 
 	// prototype_pattern()
 
 	// singletone_pattern()
+
+	adapter_pattern()
 }
 
 // creational patterns
@@ -144,4 +147,21 @@ func singletone_pattern() {
 	for i := 0; i < 10; i++ {
 		singletone.GetInstance()
 	}
+}
+
+// structural patterns
+
+func adapter_pattern() {
+	// creating new client
+	client := adapter.Client{}
+
+	// creating new Mac machinec
+	macMachine := adapter.Mac{}
+	client.InsertLigtingConnectorIntoComputer(&macMachine)
+
+	// creating new Windows machines
+	windowsMachine := adapter.Windows{}
+	// creating new WindowsAdapter
+	windowsAdapter := adapter.NewWindowsAdapter(&windowsMachine)
+	client.InsertLigtingConnectorIntoComputer(windowsAdapter)
 }
