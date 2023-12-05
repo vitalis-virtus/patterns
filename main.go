@@ -19,11 +19,11 @@ func main() {
 
 	// abstract_fabric_sports()
 
-	// builder_pattern()
+	builder_pattern()
 
 	// prototype_pattern()
 
-	singletone_pattern()
+	// singletone_pattern()
 }
 
 // creational patterns
@@ -107,11 +107,16 @@ func abstract_fabric_sports() {
 }
 
 func builder_pattern() {
-	carBuilder := builder.NewCarBuilder()
+	carBuilderSabre := builder.NewCarBuilder()
 
-	car := carBuilder.SetColor("green").SetEngineType("V8").SetNavigation(false).SetSunroof(true)
+	car := carBuilderSabre.SetColor("green").SetEngineType("V8").SetNavigation(false).SetSunroof(true)
+	sabre := car.Build()
 
-	fmt.Println(car.Build())
+	director := builder.NewDirector(builder.NewCarBuilder())
+	camaro := director.ConstructCar("red", "V12", false, true)
+
+	fmt.Println(sabre)
+	fmt.Println(camaro)
 }
 
 func prototype_pattern() {

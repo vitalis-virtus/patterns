@@ -8,17 +8,17 @@ type Car struct {
 	HasNavigation bool
 }
 
-// CarBuilder provides an interface for constructing the parts of the car.
-type CarBuilder interface {
-	SetColor(color string) CarBuilder
-	SetEngineType(engineType string) CarBuilder
-	SetSunroof(hasSunroof bool) CarBuilder
-	SetNavigation(hasNavigation bool) CarBuilder
+// Builder provides an interface for constructing the parts of the car.
+type Builder interface {
+	SetColor(color string) Builder
+	SetEngineType(engineType string) Builder
+	SetSunroof(hasSunroof bool) Builder
+	SetNavigation(hasNavigation bool) Builder
 	Build() *Car
 }
 
 // NewCarBuilder creates a new CarBuilder.
-func NewCarBuilder() CarBuilder {
+func NewCarBuilder() Builder {
 	return &carBuilder{
 		car: &Car{}, // Initialize the car attribute
 	}
@@ -29,22 +29,22 @@ type carBuilder struct {
 	car *Car
 }
 
-func (cb *carBuilder) SetColor(color string) CarBuilder {
+func (cb *carBuilder) SetColor(color string) Builder {
 	cb.car.Color = color
 	return cb
 }
 
-func (cb *carBuilder) SetEngineType(engineType string) CarBuilder {
+func (cb *carBuilder) SetEngineType(engineType string) Builder {
 	cb.car.EngineType = engineType
 	return cb
 }
 
-func (cb *carBuilder) SetSunroof(hasRoof bool) CarBuilder {
+func (cb *carBuilder) SetSunroof(hasRoof bool) Builder {
 	cb.car.HasRoof = hasRoof
 	return cb
 }
 
-func (cb *carBuilder) SetNavigation(hasNavigation bool) CarBuilder {
+func (cb *carBuilder) SetNavigation(hasNavigation bool) Builder {
 	cb.car.HasNavigation = hasNavigation
 	return cb
 }
@@ -53,13 +53,24 @@ func (cb *carBuilder) Build() *Car {
 	return cb.car
 }
 
-// Director provides an interface to build cars.
-type Director struct {
-	builder CarBuilder
+// director provides an interface to build cars.
+type director struct {
+	builder Builder
 }
 
-func (d *Director) ConstructCar(color, engineType string, hasSunroof, hasNavigation bool) *Car {
-	d.builder.SetColor(color).
+type DirectorBuilder interface {
+	ConstructCar(color, engineType string, hasSunroof, hasNavigation bool) *Car
+}
+
+func NewDirector(b Builder) DirectorBuilder {
+	return &director{
+		builder: b,
+	}
+}
+
+func (d *director) ConstructCar(color, engineType string, hasSunroof, hasNavigation bool) *Car {
+	d.builder.
+		SetColor(color).
 		SetEngineType(engineType).
 		SetSunroof(hasSunroof).
 		SetNavigation(hasNavigation)
