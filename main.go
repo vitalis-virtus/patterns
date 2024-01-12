@@ -10,6 +10,7 @@ import (
 	"patterns/creational/prototype"
 	"patterns/creational/singletone"
 	"patterns/structural/adapter"
+	"patterns/structural/bridge"
 	"runtime"
 )
 
@@ -26,7 +27,9 @@ func main() {
 
 	// singletone_pattern()
 
-	adapter_pattern()
+	// adapter_pattern()
+
+	brindge_pattern()
 }
 
 // creational patterns
@@ -164,4 +167,22 @@ func adapter_pattern() {
 	// creating new WindowsAdapter
 	windowsAdapter := adapter.NewWindowsAdapter(&windowsMachine)
 	client.InsertLigtingConnectorIntoComputer(windowsAdapter)
+}
+
+func brindge_pattern() {
+	hpPrinter := bridge.HP{}
+	epsonPrinter := bridge.Epson{}
+
+	macComputer := bridge.Mac{}
+	windowsComputer := bridge.Windows{}
+
+	macComputer.SetPrinter(&hpPrinter)
+	macComputer.Print("hello world")
+	macComputer.SetPrinter(&epsonPrinter)
+	macComputer.Print("hello world")
+
+	windowsComputer.SetPrinter(&hpPrinter)
+	windowsComputer.Print("hello world")
+	windowsComputer.SetPrinter(&epsonPrinter)
+	windowsComputer.Print("hello world")
 }
