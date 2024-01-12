@@ -11,6 +11,7 @@ import (
 	"patterns/creational/singletone"
 	"patterns/structural/adapter"
 	"patterns/structural/bridge"
+	"patterns/structural/composite"
 	"runtime"
 )
 
@@ -29,7 +30,9 @@ func main() {
 
 	// adapter_pattern()
 
-	brindge_pattern()
+	// brindge_pattern()
+
+	composite_pattern()
 }
 
 // creational patterns
@@ -185,4 +188,21 @@ func brindge_pattern() {
 	windowsComputer.Print("hello world")
 	windowsComputer.SetPrinter(&epsonPrinter)
 	windowsComputer.Print("hello world")
+}
+
+func composite_pattern() {
+	file1 := composite.NewFile("file1")
+	file2 := composite.NewFile("file2")
+	file3 := composite.NewFile("file3")
+
+	folder1 := composite.NewFolder("folder1")
+	folder2 := composite.NewFolder("folder2")
+
+	folder1.AddComponent(&file1)
+
+	folder2.AddComponent(&file2)
+	folder2.AddComponent(&file3)
+	folder2.AddComponent(&folder1)
+
+	folder2.Search("rose")
 }
